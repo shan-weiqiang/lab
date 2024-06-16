@@ -10,3 +10,5 @@ endif()
 include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/CmakeHelpers.cmake)
 
 add_subdirectory(timer)
+add_subdirectory(sockets)
+
