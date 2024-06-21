@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 project(boost_lab)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 find_package(Boost 1.39.0 REQUIRED)
 
 if(Boost_FOUND)

@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     }
     boost::asio::io_context io;
     tcp::resolver res(io);
-    tcp::resolver::results_type endpoints = res.resolve(argv[1], "daytime");
+    tcp::resolver::results_type endpoints = res.resolve(argv[1], "5002");
     tcp::socket socket(io);
     boost::asio::connect(socket, endpoints);
     for (;;) {
