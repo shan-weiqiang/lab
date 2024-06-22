@@ -9,8 +9,6 @@
 #include <memory>
 #include <string>
 
-using boost::asio::ip::udp;
-
 #include "async_udp.h"
 
 int main() {
