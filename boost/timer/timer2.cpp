@@ -8,13 +8,14 @@
 #include <thread>
 
 void print(const boost::system::error_code) {
-  std::cout << "Hello World!" << std::endl;
+  std::cout << "print thread id: " << std::this_thread::get_id() << std::endl;
 }
 
 int main() {
+  std::cout << "main thread id: " << std::this_thread::get_id() << std::endl;
   boost::asio::io_context io;
   //   timer start
-  boost::asio::steady_timer t(io, boost::asio::chrono::seconds(5));
+  boost::asio::steady_timer t(io, boost::asio::chrono::seconds(1));
   {
     std::this_thread::sleep_for(boost::asio::chrono::seconds(3));
     auto n = boost::asio::steady_timer::clock_type::now();
@@ -24,6 +25,10 @@ int main() {
                      .count()
               << std::endl;
   }
+  // handler will always be executed in io.run() thread, even when async_wait is
+  // called and the timer is alread expired; this is achieved by using the timer
+  // as fd and use epoll to mointor the epoll:
+  // https://man7.org/linux/man-pages/man2/timerfd_create.2.html
   t.async_wait(print);
 
   auto now = std::chrono::system_clock::now();
