@@ -19,7 +19,7 @@ add_library(msg STATIC ${CPP_FILE})
 
 target_link_libraries(msg PUBLIC fastdds fastcdr)
 
-add_executable(pub pub.cpp)
-add_executable(sub sub.cpp)
-target_link_libraries(pub PUBLIC msg fastdds fastcdr)
-target_link_libraries(sub PUBLIC msg fastdds fastcdr)
+add_executable(ping ping.cpp)
+add_executable(pong pong.cpp)
+target_link_libraries(ping PUBLIC msg fastdds fastcdr)
+target_link_libraries(pong PUBLIC msg fastdds fastcdr)

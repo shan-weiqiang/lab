@@ -5,14 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "boost",
+            "name": "fastdds",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/boost/build/sockets/async_tcp_server",
+            "program": "${workspaceFolder}/fastdds/build/pong",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
-            "environment": [],
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "$LD_LIBRARY_PATH:/home/swq/Fast-DDS/install/lib"
+                }
+            ],
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [
