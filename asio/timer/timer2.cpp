@@ -1,26 +1,25 @@
-#include <boost/asio.hpp>
-#include <boost/asio/detail/chrono.hpp>
-#include <boost/asio/io_context.hpp>
-#include <boost/asio/steady_timer.hpp>
-#include <boost/system/error_code.hpp>
+#include <asio.hpp>
+#include <asio/detail/chrono.hpp>
+#include <asio/io_context.hpp>
+#include <asio/steady_timer.hpp>
 #include <chrono>
 #include <iostream>
 #include <thread>
 
-void print(const boost::system::error_code) {
+void print(const std::error_code) {
   std::cout << "print thread id: " << std::this_thread::get_id() << std::endl;
 }
 
 int main() {
   std::cout << "main thread id: " << std::this_thread::get_id() << std::endl;
-  boost::asio::io_context io;
+  asio::io_context io;
   //   timer start
-  boost::asio::steady_timer t(io, boost::asio::chrono::seconds(1));
+  asio::steady_timer t(io, asio::chrono::seconds(1));
   {
-    std::this_thread::sleep_for(boost::asio::chrono::seconds(3));
-    auto n = boost::asio::steady_timer::clock_type::now();
+    std::this_thread::sleep_for(asio::chrono::seconds(3));
+    auto n = asio::steady_timer::clock_type::now();
     std::cout << "timer left: "
-              << std::chrono::duration_cast<boost::asio::chrono::milliseconds>(
+              << std::chrono::duration_cast<asio::chrono::milliseconds>(
                      t.expiry() - n)
                      .count()
               << std::endl;

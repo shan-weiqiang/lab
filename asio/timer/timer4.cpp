@@ -1,39 +1,42 @@
-#include <boost/asio.hpp>
-#include <boost/asio/detail/chrono.hpp>
-#include <boost/asio/io_context.hpp>
-#include <boost/asio/steady_timer.hpp>
-#include <boost/system/error_code.hpp>
+#include <asio.hpp>
+#include <asio/detail/chrono.hpp>
+#include <asio/io_context.hpp>
+#include <asio/steady_timer.hpp>
 #include <iostream>
 
 class printer {
 public:
-  printer(boost::asio::io_context &io, int cnt, int interval)
-      : cnt{cnt}, interval{interval}, t{boost::asio::steady_timer(
-                                          io, boost::asio::chrono::seconds(
-                                                  interval))} {
-    t.async_wait([this](boost::system::error_code ec) { print(ec); });
+  printer(asio::io_context &io, int cnt, int interval, const std::string &name_)
+      : cnt{cnt}, interval{interval},
+        t{asio::steady_timer(io, asio::chrono::seconds(interval))}, name{
+                                                                        name_} {
+    t.async_wait([this](std::error_code ec) { print(ec); });
   }
 
-  void print(boost::system::error_code) {
+  void print(std::error_code) {
     if (cnt < 5) {
       std::cout << cnt << std::endl;
       ++cnt;
+      std::cout << "timer triggered, from timer: " << name << std::endl;
       //   reset timer start timepoint
-      t.expires_at(t.expiry() + boost::asio::chrono::seconds(interval));
-      t.async_wait([this](boost::system::error_code ec) { print(ec); });
+      t.expires_at(t.expiry() + asio::chrono::seconds(interval));
+      t.async_wait([this](std::error_code ec) { print(ec); });
     }
   }
 
-  ~printer() { std::cout << "final cnt: " << cnt << std::endl; }
+  ~printer() { std::cout << "final cnt: " << name << ":" << cnt << std::endl; }
 
 private:
   int cnt;
   int interval;
-  boost::asio::steady_timer t;
+  asio::steady_timer t;
+  std::string name;
 };
 
 int main() {
-  boost::asio::io_context io;
-  printer p{io, 0, 2};
-  io.run();
+  asio::io_context io;
+  printer p{io, 0, 2, "before run"};
+  std::thread th = std::thread([&io]() { io.run(); });
+  printer p1{io, 0, 1, "after run"};
+  th.join();
 }

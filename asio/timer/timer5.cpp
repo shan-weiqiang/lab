@@ -1,25 +1,26 @@
-#include <boost/asio.hpp>
-#include <boost/asio/bind_executor.hpp>
-#include <boost/asio/detail/chrono.hpp>
-#include <boost/asio/io_context.hpp>
-#include <boost/asio/steady_timer.hpp>
-#include <boost/asio/strand.hpp>
+#include <asio.hpp>
+#include <asio/bind_executor.hpp>
+#include <asio/detail/chrono.hpp>
+#include <asio/io_context.hpp>
+#include <asio/steady_timer.hpp>
+#include <asio/strand.hpp>
+#include <functional>
 #include <iostream>
 #include <thread>
 
 class printer {
 
 public:
-  printer(boost::asio::io_context &io)
-      : cnt{0}, strand{boost::asio::make_strand(io)},
-        timer1{io, boost::asio::chrono::seconds(1)},
-        timer2{io, boost::asio::chrono::seconds(1)} {
+  printer(asio::io_context &io)
+      : cnt{0}, strand{asio::make_strand(io)},
+        timer1{io, asio::chrono::seconds(1)},
+        timer2{io, asio::chrono::seconds(1)} {
     // handlers bound to the same strand will not be executed concurrently by
     // io_context
     timer1.async_wait(
-        boost::asio::bind_executor(strand, std::bind(&printer::print1, this)));
+        asio::bind_executor(strand, std::bind(&printer::print1, this)));
     timer2.async_wait(
-        boost::asio::bind_executor(strand, std::bind(&printer::print2, this)));
+        asio::bind_executor(strand, std::bind(&printer::print2, this)));
   }
 
   void print1() {
@@ -27,8 +28,8 @@ public:
       ++cnt;
       std::cout << cnt << " ; thread id: " << std::this_thread::get_id()
                 << std::endl;
-      timer1.expires_at(timer1.expiry() + boost::asio::chrono::seconds(1));
-      timer1.async_wait(boost::asio::bind_executor(
+      timer1.expires_at(timer1.expiry() + asio::chrono::seconds(1));
+      timer1.async_wait(asio::bind_executor(
           strand, std::bind(&printer::print1, this)));
     }
   }
@@ -37,8 +38,8 @@ public:
       ++cnt;
       std::cout << cnt << " ; thread id: " << std::this_thread::get_id()
                 << std::endl;
-      timer2.expires_at(timer2.expiry() + boost::asio::chrono::seconds(1));
-      timer2.async_wait(boost::asio::bind_executor(
+      timer2.expires_at(timer2.expiry() + asio::chrono::seconds(1));
+      timer2.async_wait(asio::bind_executor(
           strand, std::bind(&printer::print2, this)));
     }
   }
@@ -47,13 +48,13 @@ public:
 
 private:
   int cnt;
-  boost::asio::steady_timer timer1;
-  boost::asio::steady_timer timer2;
-  boost::asio::strand<boost::asio::io_context::executor_type> strand;
+  asio::steady_timer timer1;
+  asio::steady_timer timer2;
+  asio::strand<asio::io_context::executor_type> strand;
 };
 
 int main() {
-  boost::asio::io_context io;
+  asio::io_context io;
   printer p{io};
 
   std::thread t{[&io]() { io.run(); }};
