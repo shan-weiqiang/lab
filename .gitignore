@@ -35,3 +35,5 @@ build
 test.cpp
 protobuf/protobuf-27.2/
 bin/
+install
+log
