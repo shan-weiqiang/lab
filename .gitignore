@@ -32,3 +32,6 @@ build
 *.exe
 *.out
 *.app
+test.cpp
+protobuf/protobuf-27.2/
+bin/
