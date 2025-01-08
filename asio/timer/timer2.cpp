@@ -24,7 +24,7 @@ int main() {
                      .count()
               << std::endl;
   }
-  // handler will always be executed in io.run() thread, even when async_wait is
+  // handler will always be executed in io.run() thread, even if when async_wait is
   // called and the timer is alread expired; this is achieved by using the timer
   // as fd and use epoll to mointor the epoll:
   // https://man7.org/linux/man-pages/man2/timerfd_create.2.html
