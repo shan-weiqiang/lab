@@ -30,7 +30,6 @@ private:
   std::string content_;
 };
 
-
 int main() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -152,7 +151,8 @@ int main() {
   // ============================================
   cout << "\n=== Section 6: Dynamic Message Type Creation ===\n";
   cout << "----------------------------------------------\n";
-  google::protobuf::DescriptorPool pool(google::protobuf::DescriptorPool::generated_pool());
+  google::protobuf::DescriptorPool pool(
+      google::protobuf::DescriptorPool::generated_pool());
   google::protobuf::FileDescriptorProto file_proto;
   file_proto.set_name("my_dynamic.proto");
   file_proto.set_package("mypackage");
@@ -204,6 +204,66 @@ int main() {
   std::cout << message_dyn->DebugString() << std::endl;
 
   // ============================================
+  // Section 6.5: Immutability of built descriptors
+  // Demonstrates that once a descriptor is built, it cannot be modified
+  // ============================================
+  cout << "\n=== Section 6.5: Immutability of built descriptors ===\n";
+  cout << "----------------------------------------------------\n";
+
+  // Try to add another field to message_proto
+  google::protobuf::FieldDescriptorProto *field2 = message_proto->add_field();
+  field2->set_name("another_field");
+  field2->set_number(2);
+  field2->set_type(google::protobuf::FieldDescriptorProto::TYPE_INT32);
+
+  cout << "Added 'another_field' to FileDescriptorProto in memory.\n";
+
+  // The existing message_desc is immutable and won't see the change.
+  const google::protobuf::FieldDescriptor *field_desc2 =
+      message_desc->FindFieldByName("another_field");
+
+  cout << "Is 'another_field' found in the original descriptor? "
+       << (field_desc2 ? "YES" : "NO") << "\n";
+  cout << "Original descriptor field count: " << message_desc->field_count()
+       << "\n\n";
+
+  // To use the new field, you would have to build a new FileDescriptor.
+  // Building with the same name will fail because it's already in the pool.
+  const google::protobuf::FileDescriptor *new_file_desc_fail =
+      pool.BuildFile(file_proto);
+  cout << "Trying to build with same name again: "
+       << (new_file_desc_fail ? "succeeded (unexpected!)"
+                              : "failed as expected")
+       << "\n";
+
+  // We have to change the name to build a new version.
+  file_proto.set_name("my_dynamic_v2.proto");
+  // We must also change the message name to avoid a symbol collision in the
+  // pool.
+  message_proto->set_name("MyDynamicMessageV2");
+  const google::protobuf::FileDescriptor *new_file_desc_ok =
+      pool.BuildFile(file_proto);
+  if (new_file_desc_ok) {
+    cout << "Building with a new file and message name succeeded.\n";
+    const google::protobuf::Descriptor *new_message_desc =
+        new_file_desc_ok->FindMessageTypeByName("MyDynamicMessageV2");
+    if (new_message_desc) {
+      cout << "Found new message: '" << new_message_desc->full_name() << "'\n";
+      cout << "New descriptor field count: " << new_message_desc->field_count()
+           << "\n";
+      const google::protobuf::FieldDescriptor *new_field_desc =
+          new_message_desc->FindFieldByName("another_field");
+      cout << "Is 'another_field' found in the new descriptor? "
+           << (new_field_desc ? "YES" : "NO") << "\n";
+    } else {
+      cout << "Failed to find 'MyDynamicMessageV2' in new file "
+              "descriptor.\n";
+    }
+  } else {
+    cout << "Building with a new name failed unexpectedly.\n";
+  }
+
+  // ============================================
   // Section 7: Proto File String Parsing
   // Demonstrates how to create message types from a .proto file content string
   // Shows how to use the compiler infrastructure to parse proto definitions
@@ -222,7 +282,8 @@ int main() {
         }
     )";
 
-  google::protobuf::DescriptorPool descriptor_pool(google::protobuf::DescriptorPool::generated_pool());
+  google::protobuf::DescriptorPool descriptor_pool(
+      google::protobuf::DescriptorPool::generated_pool());
   MemorySourceTree source_tree("person.proto", proto_content);
   google::protobuf::compiler::SourceTreeDescriptorDatabase source_tree_db(
       &source_tree);
@@ -232,7 +293,6 @@ int main() {
     std::cerr << "Failed to parse proto content!" << std::endl;
     return 1;
   }
-
 
   const google::protobuf::FileDescriptor *file_desc_dyn =
       descriptor_pool.BuildFile(file_desc_proto);
