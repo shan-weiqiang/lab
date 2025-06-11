@@ -1,0 +1,14 @@
+syntax = "proto3";
+package test;
+
+message MyMessage {
+  int32 id = 1;
+  string name = 2;
+}
+
+message DynamicPerson {
+    string name = 1;
+    int32 age = 2;
+    repeated string hobbies = 3;
+    bool is_active = 4;
+}
