@@ -9,6 +9,9 @@ set(CMAKE_BUILD_TYPE Debug)
 #     include_directories(${Boost_INCLUDE_DIRS})
 # endif()
 
+add_definitions(-DASIO_STANDALONE)
+
+
 include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/CmakeHelpers.cmake)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/asio-1.30.2/include)
 
