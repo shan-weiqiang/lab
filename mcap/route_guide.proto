@@ -21,6 +21,9 @@ option objc_class_prefix = "RTG";
 
 package routeguide;
 
+// Import complex types
+import "complex_types.proto";
+
 // Points are represented as latitude-longitude pairs in the E7 representation
 // (degrees multiplied by 10**7 and rounded to the nearest integer).
 // Latitudes should be in the range +/- 90 degrees and longitude should be in
@@ -77,4 +80,22 @@ message RouteSummary {
 
   // The duration of the traversal in seconds.
   int32 elapsed_time = 4;
+}
+
+// A complex route summary that includes scene information
+message ComplexRouteSummary {
+  // Basic route information
+  RouteSummary basic_summary = 1;
+  
+  // Scene information along the route
+  complex.SceneInfo scene_info = 2;
+  
+  // Additional metadata
+  map<string, string> metadata = 3;
+  
+  // List of detected features with complex information
+  repeated Feature features = 4;
+  
+  // Route statistics
+  repeated double distance_segments = 5;
 }

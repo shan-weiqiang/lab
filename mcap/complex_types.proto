@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package complex;
+
+// Enum for vehicle types
+enum VehicleType {
+  UNKNOWN = 0;
+  CAR = 1;
+  TRUCK = 2;
+  MOTORCYCLE = 3;
+  BICYCLE = 4;
+  PEDESTRIAN = 5;
+}
+
+// 3D point structure
+message Point3D {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}
+
+// Bounding box structure
+message BoundingBox {
+  Point3D min_point = 1;
+  Point3D max_point = 2;
+  double confidence = 3;
+}
+
+// Vehicle information
+message Vehicle {
+  string id = 1;
+  VehicleType type = 2;
+  Point3D position = 3;
+  Point3D velocity = 4;
+  BoundingBox bbox = 5;
+  repeated Point3D trajectory = 6;
+  map<string, string> attributes = 7;
+}
+
+// Traffic light state
+enum TrafficLightState {
+  RED = 0;
+  YELLOW = 1;
+  GREEN = 2;
+  UNKNOWN_LIGHT = 3;
+}
+
+// Traffic light information
+message TrafficLight {
+  string id = 1;
+  TrafficLightState state = 2;
+  double remaining_time = 3;
+  Point3D position = 4;
+}
+
+// Complex scene information
+message SceneInfo {
+  uint64 timestamp = 1;
+  string scene_id = 2;
+  repeated Vehicle vehicles = 3;
+  repeated TrafficLight traffic_lights = 4;
+  Point3D ego_position = 5;
+  BoundingBox ego_bbox = 6;
+  map<string, double> metrics = 7;
+} 

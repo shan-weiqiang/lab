@@ -27,7 +27,11 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/map.h"  // IWYU pragma: export
+#include "google/protobuf/map_entry.h"
+#include "google/protobuf/map_field_inl.h"
 #include "google/protobuf/unknown_field_set.h"
+#include "complex_types.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -50,6 +54,12 @@ struct TableStruct_route_5fguide_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_route_5fguide_2eproto;
 namespace routeguide {
+class ComplexRouteSummary;
+struct ComplexRouteSummaryDefaultTypeInternal;
+extern ComplexRouteSummaryDefaultTypeInternal _ComplexRouteSummary_default_instance_;
+class ComplexRouteSummary_MetadataEntry_DoNotUse;
+struct ComplexRouteSummary_MetadataEntry_DoNotUseDefaultTypeInternal;
+extern ComplexRouteSummary_MetadataEntry_DoNotUseDefaultTypeInternal _ComplexRouteSummary_MetadataEntry_DoNotUse_default_instance_;
 class Feature;
 struct FeatureDefaultTypeInternal;
 extern FeatureDefaultTypeInternal _Feature_default_instance_;
@@ -456,6 +466,36 @@ class Point final : public ::google::protobuf::Message
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
+  friend struct ::TableStruct_route_5fguide_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ComplexRouteSummary_MetadataEntry_DoNotUse final
+    : public ::google::protobuf::internal::MapEntry<
+          ComplexRouteSummary_MetadataEntry_DoNotUse, std::string, std::string,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+ public:
+  using SuperType = ::google::protobuf::internal::MapEntry<
+      ComplexRouteSummary_MetadataEntry_DoNotUse, std::string, std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+  ComplexRouteSummary_MetadataEntry_DoNotUse();
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ComplexRouteSummary_MetadataEntry_DoNotUse(
+      ::google::protobuf::internal::ConstantInitialized);
+  explicit ComplexRouteSummary_MetadataEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const ComplexRouteSummary_MetadataEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const ComplexRouteSummary_MetadataEntry_DoNotUse*>(
+        &_ComplexRouteSummary_MetadataEntry_DoNotUse_default_instance_);
+  }
+  static bool ValidateKey(std::string* s) {
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "routeguide.ComplexRouteSummary.MetadataEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "routeguide.ComplexRouteSummary.MetadataEntry.value");
+ }
+  ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_route_5fguide_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1025,6 +1065,255 @@ class Feature final : public ::google::protobuf::Message
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::routeguide::Point* location_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_route_5fguide_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ComplexRouteSummary final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:routeguide.ComplexRouteSummary) */ {
+ public:
+  inline ComplexRouteSummary() : ComplexRouteSummary(nullptr) {}
+  ~ComplexRouteSummary() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ComplexRouteSummary(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline ComplexRouteSummary(const ComplexRouteSummary& from) : ComplexRouteSummary(nullptr, from) {}
+  inline ComplexRouteSummary(ComplexRouteSummary&& from) noexcept
+      : ComplexRouteSummary(nullptr, std::move(from)) {}
+  inline ComplexRouteSummary& operator=(const ComplexRouteSummary& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ComplexRouteSummary& operator=(ComplexRouteSummary&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ComplexRouteSummary& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ComplexRouteSummary* internal_default_instance() {
+    return reinterpret_cast<const ComplexRouteSummary*>(
+        &_ComplexRouteSummary_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(ComplexRouteSummary& a, ComplexRouteSummary& b) { a.Swap(&b); }
+  inline void Swap(ComplexRouteSummary* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ComplexRouteSummary* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ComplexRouteSummary* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<ComplexRouteSummary>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ComplexRouteSummary& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ComplexRouteSummary& from) { ComplexRouteSummary::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ComplexRouteSummary* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "routeguide.ComplexRouteSummary"; }
+
+ protected:
+  explicit ComplexRouteSummary(::google::protobuf::Arena* arena);
+  ComplexRouteSummary(::google::protobuf::Arena* arena, const ComplexRouteSummary& from);
+  ComplexRouteSummary(::google::protobuf::Arena* arena, ComplexRouteSummary&& from) noexcept
+      : ComplexRouteSummary(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMetadataFieldNumber = 3,
+    kFeaturesFieldNumber = 4,
+    kDistanceSegmentsFieldNumber = 5,
+    kBasicSummaryFieldNumber = 1,
+    kSceneInfoFieldNumber = 2,
+  };
+  // map<string, string> metadata = 3;
+  int metadata_size() const;
+  private:
+  int _internal_metadata_size() const;
+
+  public:
+  void clear_metadata() ;
+  const ::google::protobuf::Map<std::string, std::string>& metadata() const;
+  ::google::protobuf::Map<std::string, std::string>* mutable_metadata();
+
+  private:
+  const ::google::protobuf::Map<std::string, std::string>& _internal_metadata() const;
+  ::google::protobuf::Map<std::string, std::string>* _internal_mutable_metadata();
+
+  public:
+  // repeated .routeguide.Feature features = 4;
+  int features_size() const;
+  private:
+  int _internal_features_size() const;
+
+  public:
+  void clear_features() ;
+  ::routeguide::Feature* mutable_features(int index);
+  ::google::protobuf::RepeatedPtrField<::routeguide::Feature>* mutable_features();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::routeguide::Feature>& _internal_features() const;
+  ::google::protobuf::RepeatedPtrField<::routeguide::Feature>* _internal_mutable_features();
+  public:
+  const ::routeguide::Feature& features(int index) const;
+  ::routeguide::Feature* add_features();
+  const ::google::protobuf::RepeatedPtrField<::routeguide::Feature>& features() const;
+  // repeated double distance_segments = 5;
+  int distance_segments_size() const;
+  private:
+  int _internal_distance_segments_size() const;
+
+  public:
+  void clear_distance_segments() ;
+  double distance_segments(int index) const;
+  void set_distance_segments(int index, double value);
+  void add_distance_segments(double value);
+  const ::google::protobuf::RepeatedField<double>& distance_segments() const;
+  ::google::protobuf::RepeatedField<double>* mutable_distance_segments();
+
+  private:
+  const ::google::protobuf::RepeatedField<double>& _internal_distance_segments() const;
+  ::google::protobuf::RepeatedField<double>* _internal_mutable_distance_segments();
+
+  public:
+  // .routeguide.RouteSummary basic_summary = 1;
+  bool has_basic_summary() const;
+  void clear_basic_summary() ;
+  const ::routeguide::RouteSummary& basic_summary() const;
+  PROTOBUF_NODISCARD ::routeguide::RouteSummary* release_basic_summary();
+  ::routeguide::RouteSummary* mutable_basic_summary();
+  void set_allocated_basic_summary(::routeguide::RouteSummary* value);
+  void unsafe_arena_set_allocated_basic_summary(::routeguide::RouteSummary* value);
+  ::routeguide::RouteSummary* unsafe_arena_release_basic_summary();
+
+  private:
+  const ::routeguide::RouteSummary& _internal_basic_summary() const;
+  ::routeguide::RouteSummary* _internal_mutable_basic_summary();
+
+  public:
+  // .complex.SceneInfo scene_info = 2;
+  bool has_scene_info() const;
+  void clear_scene_info() ;
+  const ::complex::SceneInfo& scene_info() const;
+  PROTOBUF_NODISCARD ::complex::SceneInfo* release_scene_info();
+  ::complex::SceneInfo* mutable_scene_info();
+  void set_allocated_scene_info(::complex::SceneInfo* value);
+  void unsafe_arena_set_allocated_scene_info(::complex::SceneInfo* value);
+  ::complex::SceneInfo* unsafe_arena_release_scene_info();
+
+  private:
+  const ::complex::SceneInfo& _internal_scene_info() const;
+  ::complex::SceneInfo* _internal_mutable_scene_info();
+
+  public:
+  // @@protoc_insertion_point(class_scope:routeguide.ComplexRouteSummary)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 5, 4,
+      47, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::MapField<ComplexRouteSummary_MetadataEntry_DoNotUse, std::string, std::string,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+        metadata_;
+    ::google::protobuf::RepeatedPtrField< ::routeguide::Feature > features_;
+    ::google::protobuf::RepeatedField<double> distance_segments_;
+    ::routeguide::RouteSummary* basic_summary_;
+    ::complex::SceneInfo* scene_info_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1677,6 +1966,321 @@ inline ::int32_t RouteSummary::_internal_elapsed_time() const {
 inline void RouteSummary::_internal_set_elapsed_time(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.elapsed_time_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// ComplexRouteSummary
+
+// .routeguide.RouteSummary basic_summary = 1;
+inline bool ComplexRouteSummary::has_basic_summary() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.basic_summary_ != nullptr);
+  return value;
+}
+inline void ComplexRouteSummary::clear_basic_summary() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.basic_summary_ != nullptr) _impl_.basic_summary_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::routeguide::RouteSummary& ComplexRouteSummary::_internal_basic_summary() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::routeguide::RouteSummary* p = _impl_.basic_summary_;
+  return p != nullptr ? *p : reinterpret_cast<const ::routeguide::RouteSummary&>(::routeguide::_RouteSummary_default_instance_);
+}
+inline const ::routeguide::RouteSummary& ComplexRouteSummary::basic_summary() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:routeguide.ComplexRouteSummary.basic_summary)
+  return _internal_basic_summary();
+}
+inline void ComplexRouteSummary::unsafe_arena_set_allocated_basic_summary(::routeguide::RouteSummary* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.basic_summary_);
+  }
+  _impl_.basic_summary_ = reinterpret_cast<::routeguide::RouteSummary*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:routeguide.ComplexRouteSummary.basic_summary)
+}
+inline ::routeguide::RouteSummary* ComplexRouteSummary::release_basic_summary() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::routeguide::RouteSummary* released = _impl_.basic_summary_;
+  _impl_.basic_summary_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::routeguide::RouteSummary* ComplexRouteSummary::unsafe_arena_release_basic_summary() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:routeguide.ComplexRouteSummary.basic_summary)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::routeguide::RouteSummary* temp = _impl_.basic_summary_;
+  _impl_.basic_summary_ = nullptr;
+  return temp;
+}
+inline ::routeguide::RouteSummary* ComplexRouteSummary::_internal_mutable_basic_summary() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.basic_summary_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::routeguide::RouteSummary>(GetArena());
+    _impl_.basic_summary_ = reinterpret_cast<::routeguide::RouteSummary*>(p);
+  }
+  return _impl_.basic_summary_;
+}
+inline ::routeguide::RouteSummary* ComplexRouteSummary::mutable_basic_summary() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::routeguide::RouteSummary* _msg = _internal_mutable_basic_summary();
+  // @@protoc_insertion_point(field_mutable:routeguide.ComplexRouteSummary.basic_summary)
+  return _msg;
+}
+inline void ComplexRouteSummary::set_allocated_basic_summary(::routeguide::RouteSummary* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete (_impl_.basic_summary_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.basic_summary_ = reinterpret_cast<::routeguide::RouteSummary*>(value);
+  // @@protoc_insertion_point(field_set_allocated:routeguide.ComplexRouteSummary.basic_summary)
+}
+
+// .complex.SceneInfo scene_info = 2;
+inline bool ComplexRouteSummary::has_scene_info() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.scene_info_ != nullptr);
+  return value;
+}
+inline const ::complex::SceneInfo& ComplexRouteSummary::_internal_scene_info() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::complex::SceneInfo* p = _impl_.scene_info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::complex::SceneInfo&>(::complex::_SceneInfo_default_instance_);
+}
+inline const ::complex::SceneInfo& ComplexRouteSummary::scene_info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:routeguide.ComplexRouteSummary.scene_info)
+  return _internal_scene_info();
+}
+inline void ComplexRouteSummary::unsafe_arena_set_allocated_scene_info(::complex::SceneInfo* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.scene_info_);
+  }
+  _impl_.scene_info_ = reinterpret_cast<::complex::SceneInfo*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:routeguide.ComplexRouteSummary.scene_info)
+}
+inline ::complex::SceneInfo* ComplexRouteSummary::release_scene_info() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::complex::SceneInfo* released = _impl_.scene_info_;
+  _impl_.scene_info_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::complex::SceneInfo* ComplexRouteSummary::unsafe_arena_release_scene_info() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:routeguide.ComplexRouteSummary.scene_info)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::complex::SceneInfo* temp = _impl_.scene_info_;
+  _impl_.scene_info_ = nullptr;
+  return temp;
+}
+inline ::complex::SceneInfo* ComplexRouteSummary::_internal_mutable_scene_info() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.scene_info_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::complex::SceneInfo>(GetArena());
+    _impl_.scene_info_ = reinterpret_cast<::complex::SceneInfo*>(p);
+  }
+  return _impl_.scene_info_;
+}
+inline ::complex::SceneInfo* ComplexRouteSummary::mutable_scene_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::complex::SceneInfo* _msg = _internal_mutable_scene_info();
+  // @@protoc_insertion_point(field_mutable:routeguide.ComplexRouteSummary.scene_info)
+  return _msg;
+}
+inline void ComplexRouteSummary::set_allocated_scene_info(::complex::SceneInfo* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.scene_info_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.scene_info_ = reinterpret_cast<::complex::SceneInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:routeguide.ComplexRouteSummary.scene_info)
+}
+
+// map<string, string> metadata = 3;
+inline int ComplexRouteSummary::_internal_metadata_size() const {
+  return _internal_metadata().size();
+}
+inline int ComplexRouteSummary::metadata_size() const {
+  return _internal_metadata_size();
+}
+inline void ComplexRouteSummary::clear_metadata() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.metadata_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& ComplexRouteSummary::_internal_metadata() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.metadata_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& ComplexRouteSummary::metadata() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:routeguide.ComplexRouteSummary.metadata)
+  return _internal_metadata();
+}
+inline ::google::protobuf::Map<std::string, std::string>* ComplexRouteSummary::_internal_mutable_metadata() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.metadata_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* ComplexRouteSummary::mutable_metadata() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:routeguide.ComplexRouteSummary.metadata)
+  return _internal_mutable_metadata();
+}
+
+// repeated .routeguide.Feature features = 4;
+inline int ComplexRouteSummary::_internal_features_size() const {
+  return _internal_features().size();
+}
+inline int ComplexRouteSummary::features_size() const {
+  return _internal_features_size();
+}
+inline void ComplexRouteSummary::clear_features() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.features_.Clear();
+}
+inline ::routeguide::Feature* ComplexRouteSummary::mutable_features(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:routeguide.ComplexRouteSummary.features)
+  return _internal_mutable_features()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::routeguide::Feature>* ComplexRouteSummary::mutable_features()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:routeguide.ComplexRouteSummary.features)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_features();
+}
+inline const ::routeguide::Feature& ComplexRouteSummary::features(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:routeguide.ComplexRouteSummary.features)
+  return _internal_features().Get(index);
+}
+inline ::routeguide::Feature* ComplexRouteSummary::add_features() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::routeguide::Feature* _add = _internal_mutable_features()->Add();
+  // @@protoc_insertion_point(field_add:routeguide.ComplexRouteSummary.features)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::routeguide::Feature>& ComplexRouteSummary::features() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:routeguide.ComplexRouteSummary.features)
+  return _internal_features();
+}
+inline const ::google::protobuf::RepeatedPtrField<::routeguide::Feature>&
+ComplexRouteSummary::_internal_features() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.features_;
+}
+inline ::google::protobuf::RepeatedPtrField<::routeguide::Feature>*
+ComplexRouteSummary::_internal_mutable_features() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.features_;
+}
+
+// repeated double distance_segments = 5;
+inline int ComplexRouteSummary::_internal_distance_segments_size() const {
+  return _internal_distance_segments().size();
+}
+inline int ComplexRouteSummary::distance_segments_size() const {
+  return _internal_distance_segments_size();
+}
+inline void ComplexRouteSummary::clear_distance_segments() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.distance_segments_.Clear();
+}
+inline double ComplexRouteSummary::distance_segments(int index) const {
+  // @@protoc_insertion_point(field_get:routeguide.ComplexRouteSummary.distance_segments)
+  return _internal_distance_segments().Get(index);
+}
+inline void ComplexRouteSummary::set_distance_segments(int index, double value) {
+  _internal_mutable_distance_segments()->Set(index, value);
+  // @@protoc_insertion_point(field_set:routeguide.ComplexRouteSummary.distance_segments)
+}
+inline void ComplexRouteSummary::add_distance_segments(double value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_distance_segments()->Add(value);
+  // @@protoc_insertion_point(field_add:routeguide.ComplexRouteSummary.distance_segments)
+}
+inline const ::google::protobuf::RepeatedField<double>& ComplexRouteSummary::distance_segments() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:routeguide.ComplexRouteSummary.distance_segments)
+  return _internal_distance_segments();
+}
+inline ::google::protobuf::RepeatedField<double>* ComplexRouteSummary::mutable_distance_segments()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:routeguide.ComplexRouteSummary.distance_segments)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_distance_segments();
+}
+inline const ::google::protobuf::RepeatedField<double>&
+ComplexRouteSummary::_internal_distance_segments() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.distance_segments_;
+}
+inline ::google::protobuf::RepeatedField<double>* ComplexRouteSummary::_internal_mutable_distance_segments() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.distance_segments_;
 }
 
 #ifdef __GNUC__
